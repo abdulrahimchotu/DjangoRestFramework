@@ -19,13 +19,13 @@ A Django REST API for a movie booking system that allows users to browse movies,
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/abdulrahimchotu/DjangoRestFramework.git
 cd myproj
 ```
 
 2. Create and activate a virtual environment:
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
@@ -39,17 +39,21 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
-5. Create a superuser (admin):
-```bash
-python manage.py createsuperuser
-```
-
-6. Run the development server:
+5. Run the development server:
 ```bash
 python manage.py runserver
 ```
 
 The API will be available at `http://localhost:8000`
+
+## Default Admin Credentials
+
+Use these credentials to access the admin features:
+- Username: `admin1`
+- Password: `admin`
+
+You can login at:
+- API Login: `http://localhost:8000/api/login/`
 
 ## API Endpoints
 
@@ -63,7 +67,6 @@ The API will be available at `http://localhost:8000`
 {
     "username": "string",
     "password": "string",
-    "is_admin": false
 }
 ```
 
@@ -85,7 +88,7 @@ The API will be available at `http://localhost:8000`
 - Response: Clears authentication cookies
 
 #### Check Auth Status
-- URL: `/api/check_auth/`
+- URL: `/api/me/`
 - Method: `GET`
 - Response: Returns authentication status and user info
 
@@ -230,22 +233,3 @@ ALLOWED_HOSTS = ['your-domain.com']
 
 3. Use a proper database in production (e.g., PostgreSQL)
 
-## Security Notes
-
-1. Store sensitive information in environment variables
-2. Use HTTPS in production
-3. Keep Django and all dependencies updated
-4. Never expose DEBUG=True in production
-5. Change the Django SECRET_KEY in production
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-[Add your license here]
