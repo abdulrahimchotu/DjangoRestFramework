@@ -66,7 +66,7 @@ You can login at:
 ```json
 {
     "username": "string",
-    "password": "string",
+    "password": "string"
 }
 ```
 
