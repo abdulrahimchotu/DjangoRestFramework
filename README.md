@@ -218,6 +218,70 @@ Common HTTP status codes:
 - 403: Forbidden
 - 404: Not Found
 
+## Testing
+
+### Test Files Structure
+
+The project includes comprehensive test suites for both the API and admin functionality:
+
+#### API Tests
+
+- `api/tests/test_auth.py`: Tests for authentication endpoints (signup, login, logout)
+- `api/tests/test_movies.py`: Tests for movie listing and detail endpoints
+- `api/tests/test_bookings.py`: Tests for booking creation, cancellation, and listing
+
+#### Admin API Tests
+
+- `admin_api/tests/test_admin.py`: Tests for admin-only functionality
+
+### Running Tests
+
+```bash
+python -m pytest
+```
+
+To run specific test files:
+
+```bash
+python -m pytest api/tests/test_auth.py
+python -m pytest api/tests/test_movies.py
+python -m pytest api/tests/test_bookings.py
+python -m pytest admin_api/tests/test_admin.py
+```
+
+To run tests with verbose output:
+
+```bash
+python -m pytest -v
+```
+
+### Test Coverage
+
+The test suite covers the following functionality:
+
+1. **Authentication**
+   - User signup
+   - User login with token generation
+   - User logout and token invalidation
+   - Authentication status checking
+
+2. **Movie Management**
+   - Listing movies (authenticated and unauthenticated access)
+   - Retrieving movie details
+   - Error handling for non-existent movies
+
+3. **Booking System**
+   - Creating bookings
+   - Handling insufficient seats
+   - Retrieving user bookings
+   - Cancelling bookings
+
+4. **Admin Functionality**
+   - Creating new movies (admin only)
+   - Access control for non-admin users
+   - Listing all users (admin only)
+   - Listing all bookings (admin only)
+
 ## Development
 
 1. Make sure DEBUG is set to False in production:
