@@ -20,13 +20,13 @@ A Django REST API for a movie booking system that allows users to browse movies,
 1. Clone the repository:
 ```bash
 git clone https://github.com/abdulrahimchotu/DjangoRestFramework.git
-cd myproj
+cd DjangoRestFramework
 ```
 
 2. Create and activate a virtual environment:
 ```bash
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  
 ```
 
 3. Install dependencies:
