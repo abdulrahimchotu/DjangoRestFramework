@@ -1,5 +1,6 @@
 from django.db import models 
 from django.utils import timezone
+from .managers import UserManager
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
@@ -7,11 +8,17 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     is_admin = models.BooleanField(default=False)
 
+    objects = UserManager()
+
     def __str__(self):
         return self.username
 
     class Meta:
         db_table = 'users'
+
+    def check_password(self, raw_password):
+        from django.contrib.auth.hashers import check_password
+        return check_password(raw_password, self.password)
 
 
 class Movie(models.Model):
