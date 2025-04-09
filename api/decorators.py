@@ -6,17 +6,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 def require_auth(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
-        if getattr(request, '_force_auth_check', False):
-            return Response({
-                'status': 'error',
-                'message': 'Authentication required'
-            }, status=status.HTTP_401_UNAUTHORIZED)
-
-        if hasattr(request, 'user') and request.user is not None and hasattr(request.user, 'id'):
-            request.user_id = request.user.id
-            request.is_admin = getattr(request.user, 'is_admin', False)
-            return view_func(request, *args, **kwargs)
-
         refresh_token = request.COOKIES.get('refresh_token')
 
         if not refresh_token:
@@ -28,9 +17,9 @@ def require_auth(view_func):
         try:
             token = RefreshToken(refresh_token)
             request.user_id = token['user_id']
-            request.is_admin = token['is_admin']
+            request.is_admin = token.get('is_admin', False)  # Get is_admin from token
             return view_func(request, *args, **kwargs)
-        except Exception:
+        except Exception as e:
             return Response({
                 'status': 'error',
                 'message': 'Invalid or expired token'
